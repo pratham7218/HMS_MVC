@@ -1,0 +1,108 @@
+﻿@model IEnumerable<WebApplication1.Appointment>
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    body {
+        background-image: url('/Scripts/Images/Admin Index.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+
+    <br />
+    <p style="font-size:larger;color:black;font-weight:600">Welcome <b style="background-color:teal;color:white;padding:0 0.5rem">@Convert.ToString(TempData["name"])</b></p>
+    @{
+        TempData.Keep("name");
+    }
+    <hr />
+
+
+    @using (Html.BeginForm("TakeAppointment", "patient"))
+    {
+        string s = $"{DateTime.Now.Date.ToString(("yyyy-MM-dd"))}";
+        string s1 = $"{DateTime.Now.Date.AddDays(6).ToString(("yyyy-MM-dd"))}";
+
+
+        <p style="color:black;font-weight:600;background-color:crimson">@ViewBag.AppointmentDateRequired </p>
+        <input type="date" name="date" min="@s" max="@s1" class="container-fluid" style="margin-left:45rem" />
+        <br />
+        <input type="submit" value="Press Here after selecting date" style="margin-left:42rem;margin-top:1rem;background-color:ActiveCaption;color:wheat" />
+        {
+            if (Session["AppointmentDate"] != null)
+            {
+
+                var fullDate = (DateTime)Session["AppointmentDate"];
+                var date = fullDate.ToString("yyyy-MM-dd");
+                DateTime d = DateTime.Parse(date);
+
+
+                var bookedTimeSlots = Model.Where(a => Convert.ToDateTime(a.appointmentDate).Equals(d) && a.isApproved == true).Select(a => a.appointmentTime.ToString());
+
+                {
+                    List<string> allTimes = new List<string>() { "09:00", "09:30", "10:00", "10:30" };
+
+                    <div>
+                        <label class="labelColorBlack" style="margin-left:40rem;background-color:coral;margin-top:2rem;padding:0 1rem">Available time slots for @date</label>
+                        <br />
+                        <select name="time" style="height: 25px; margin-left: 48rem; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)" class="container-fluid">
+
+
+                            @foreach (var item in allTimes)
+                            {
+                                if (!bookedTimeSlots.Contains(item + ":00"))
+                                {
+                                    <option value=@item > @item</option>
+                                }
+                                else
+                                {
+                                    <option value=@item disabled style="background-color: lightblue">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" value="Book an Appointment" style="margin:1.5rem 44rem" class="btn btn-success" id="bookAppoint" @*onclick="changeColor()"*@ />
+                    </div>
+                }
+
+
+
+
+            }
+       
+        }
+
+
+
+    }
+
+
+
+    <hr />
+
+    @using (Html.BeginForm("viewAppointments", "Patient"))
+    {
+        <div style="margin-left:42rem">
+
+            <input style="margin-left:auto" type="submit" value="View Upcoming Appointments" class="btn btn-primary" />
+        </div>
+
+    }
+
+    <hr />
+
+    @using (Html.BeginForm("CurrentTreatment", "Patient"))
+    {
+        <div style="margin-left:42rem">
+
+            <input style="margin-left:auto" type="submit" value="Show my ongoing Treatments" class="btn btn-danger" />
+        </div>
+
+    }
+
+
+
+

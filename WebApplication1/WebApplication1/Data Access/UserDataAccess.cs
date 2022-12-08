@@ -1,0 +1,144 @@
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Web;
+using System.Web.Mvc;
+using WebApplication1.Models;
+
+
+namespace WebApplication1.Data_Access
+{
+    public class UserDataAccess
+    {
+        HMS_Project_newEntities2 entities = new HMS_Project_newEntities2();
+
+
+        public User validateUser(LoginValues values)
+        {
+
+            var data = (entities.Users)
+            .Where(a => a.userName == values.UserName && a.password_ == values.Password)
+            .FirstOrDefault();
+
+
+            return data;
+        }
+
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            var data = entities.Users.ToList();
+            return data;
+        }
+
+        public User GetUserById(int id)
+        {
+            var userFound = entities.Users.Find(id);
+            return userFound;
+        }
+        public string getFullNameById(LoginValues values)
+        {
+            var fullName = entities.Users.Where(a => a.userName == values.UserName)
+            .Select(a => a.full_name).FirstOrDefault();
+
+            return fullName;
+        }
+
+        public string onSuccess(LoginValues values)
+        {
+            var role = (entities.Users).ToList().Join((entities.Roles).ToList(),
+                            u => u.role_id,
+                            r => r.role_id,
+                            (u, r) => new
+                            {
+                                userName = u.userName,
+                                nameOfUser = u.full_name,
+                                roleOfUser = r.roleName
+                            });
+
+            var record = role.Where(a => a.userName == values.UserName).FirstOrDefault();
+
+            return record.roleOfUser;
+        }
+
+        public User CreateUser(User user)
+        {
+            entities.Users.Add(user);
+            entities.SaveChanges();
+
+            return user;
+        }
+
+
+        public User UpdateUserInfo(User user, int id)
+        {
+            var userFound = entities.Users.Find(id);
+
+
+            userFound.full_name = user.full_name;
+            userFound.email = user.email;
+            userFound.password_ = user.password_;
+            userFound.userName = user.userName;
+            userFound.age = user.age;
+            userFound.gender = user.gender;
+            userFound.contact_number = user.contact_number;
+            userFound.specialization = user.specialization;
+
+            entities.SaveChanges();
+
+            return userFound;
+        }
+
+
+        public bool DeleteUser(int id)
+        {
+            
+
+            try
+            {
+                var patient = entities.Patients.Where(a => a.userId == id).FirstOrDefault();
+
+                var treatDetails = entities.Treatments.Where(a => a.patient_id == patient.patient_id).ToList();
+                foreach (var item in treatDetails)
+                {
+                    entities.Treatments.Remove(item);
+                }
+
+                var appointDetails = entities.Appointments.Where(a => a.patient_id == patient.patient_id).ToList();
+                foreach (var item in appointDetails)
+                {
+                    entities.Appointments.Remove(item);
+                }
+
+                var patientDetails = entities.Patients.Where(a => a.patient_id == patient.patient_id).FirstOrDefault();
+                try
+                {
+                    entities.Patients.Remove(patientDetails);
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+
+                var user = entities.Users.Where(a => a.userId == id).FirstOrDefault();
+                var result = entities.Users.Remove(user);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+
+        
+
+
+  
+    }
+}

@@ -1,0 +1,66 @@
+﻿@model WebApplication1.Models.LoginValues
+
+@{
+    ViewBag.Title = "LoginPage";
+}
+
+
+
+
+<div>
+
+    <div class="page-header">
+        <h2 style="color:aliceblue">Login Here</h2>
+    </div>
+
+
+    <style>
+        body {
+            background-image: url(/Scripts/Images/img.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+
+    @using (Html.BeginForm())
+    {
+
+        //Border shadow
+        //offset - x | offset - y | blur - radius | spread - radius | color
+
+
+        <div style="display:flex;justify-content:center;align-items:center">
+
+            <div class="container Login-Container">
+
+                <div class="bg-danger">@ViewBag.ErrorMsg</div>
+                <br />
+                <div>
+                    <label>User Name</label>
+                    <input type="text" placeholder="User Name" class="form-control" name="userName" required style="height: 46px; color: black; border: 1px double gray; border-radius: 16px; padding: auto 20px; margin-bottom: 2rem; padding: 2rem; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input id="password" type="password" class="form-control" placeholder="Password" name="pass" required style="height: 46px; border: 1px double gray; border-radius: 16px; padding: 2rem; color: black; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)" />
+                </div>
+
+                <div>
+                    <input type="submit" value="Login" style="margin-top:2rem" class="btn btn-success form-control" />
+                </div>
+
+                <hr style="background-color:black;height:1px" />
+
+                <div>
+                    Not an existing User? @Html.ActionLink("SignUp Here", "Registration", new { area = "" }, new { @style = "font-weight:600" })
+                </div>
+            </div>
+
+        </div>
+
+
+    }
+</div>
+
+
+

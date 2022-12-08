@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+
+<style>
+    body {
+        background-image: url('/Scripts/Images/Doctor.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+
+
+<p class="welcometext">Welcome <b class="welcome-name-text">@Convert.ToString(TempData["name"])</b></p>
+
+
+        <div class="jumbotron-form receptionist-Index">
+            @using (Html.BeginForm("ShowAppointments", "Receptionist"))
+            {
+                <input type="submit" value="Pending appointments" style="margin:1.5rem 42rem" class="btn btn-primary btn-danger" />
+            }
+        </div>
+
+        <div class="jumbotron-form receptionist-Index">
+            @using (Html.BeginForm("ShowAllAppointments", "Receptionist"))
+            {
+                <input type="submit" value="View all Appointments" style="margin:1.5rem 42rem" class="btn btn-primary" />
+            }
+        </div>
+
+
+        <div class="jumbotron-form receptionist-Index">
+            @using (Html.BeginForm("ShowBills", "Receptionist", FormMethod.Get))
+            {
+                <input type="submit" value="Payment Requests" style="margin:1.5rem 42rem" class="btn btn-success" />
+            }
+        </div>
+

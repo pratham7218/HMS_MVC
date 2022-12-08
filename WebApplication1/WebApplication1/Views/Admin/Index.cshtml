@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<br />
+<br />
+
+<style>
+    body {
+        background-image: url('/Scripts/Images/Admin Index.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+
+
+<p class="welcometext">Welcome <b class="welcome-name-text">@Convert.ToString(TempData["name"])</b></p>
+
+<hr />
+
+@using (Html.BeginForm("Register", "Admin", FormMethod.Get))
+{
+    <div style="margin-left:42rem">
+        <input type="submit" value="Register New User" class="btn btn-primary btn-danger" />
+    </div>
+}
+
+<hr />
+@using (Html.BeginForm("ShowAll", "Admin"))
+{
+    <div style="margin-left:42rem">
+        <input type="submit" value="View Existing Users" class="btn btn-primary" />
+    </div>
+
+}
+
+<hr />
+@using (Html.BeginForm("ConsumableDetails", "Admin"))
+{
+    <div style="margin-left:42rem">
+        <input type="submit" value="Add Consumebales" class="btn btn-success" />
+    </div>
+
+}

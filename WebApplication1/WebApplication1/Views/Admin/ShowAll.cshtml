@@ -1,0 +1,105 @@
+﻿@model IEnumerable<WebApplication1.User>
+
+@{
+    ViewBag.Title = "ShowAll";
+}
+
+<style>
+    body {
+        background-image: url('/Scripts/Images/Admin.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+
+<h2 style="color:black">Show All</h2>
+
+
+@using (Html.BeginForm("SearchUser","Admin",FormMethod.Post))
+{
+    <input type="search" name="name"/>
+    <input type="submit" value="Search"/>
+}
+
+<p style="margin-top:1rem">
+    @Html.ActionLink("Register New User", "Register", "Admin", "", new { @class = "btn btn-danger btn-sm" })
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="WhiteHeader">
+            <th>
+                <label>Full Name</label>
+            </th>
+            <th>
+                <label>Email</label>
+            </th>
+            <th>
+                <label>User Name</label>
+            </th>
+            <th>
+                <label>Password</label>
+            </th>
+            <th>
+                <label>Age</label>
+            </th>
+            <th>
+                <label>Contact Number</label>
+            </th>
+            <th>
+                <label>Gender</label>
+            </th>
+            <th>
+                <label>Specialization</label>
+            </th>
+            <th>
+                <label>Role Id</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody class="TableBody">
+        @foreach (var item in Model)
+        {
+            <tr class="labelColorWhite">
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.full_name)
+                </td>
+                <td class="labelColorWhite" style="word-wrap:break-word">
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.userName)
+                </td>
+                <td class="labelColorWhite" style="word-wrap:break-word">
+                    @Html.DisplayFor(modelItem => item.password_)
+                </td>
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.age)
+                </td>
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.contact_number)
+                </td>
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.specialization)
+                </td>
+                <td class="labelColorWhite">
+                    @Html.DisplayFor(modelItem => item.role_id)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.userId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.userId })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+@Html.ActionLink("Back", "Index", "", new { @class = "ActionLinksBlue" })
+

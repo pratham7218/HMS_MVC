@@ -1,0 +1,74 @@
+﻿@model List<WebApplication1.Appointment>
+@{
+    ViewBag.Title = "ShowAppointments";
+}
+
+
+<style>
+    body {
+        background-image: url('/Scripts/Images/Doctor.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+
+    <h2 class="bg-warning" style="color:black;padding-left:1rem;margin-top:4rem">Show Appointments</h2>
+    <hr />
+
+    <table class="table-bordered table table-hover">
+        <thead>
+            <tr class="WhiteHeader">
+                <th>
+                    <label>Patient Id</label>
+                </th>
+
+                <th>
+                    <label>Appointment Date</label>
+                </th>
+
+                <th>
+                    <label>Appointment Time</label>
+                </th>
+
+                <th>
+                    <label>Approve/Reject</label>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="TableBody">
+            @foreach (var item in Model)
+            {
+                <tr class="labelColorWhite">
+
+                    <td>@Html.DisplayFor(a => item.patient_id)</td>
+
+                    <td>@item.appointmentDate.Value.ToShortDateString()</td>
+
+                    <td>@Html.DisplayFor(a => item.appointmentTime)</td>
+
+                    <td>
+                        @using (Html.BeginForm("ShowAppointments", "Receptionist", new { patientId = item.patient_id }))
+                        {
+                            <div>
+                                <select name="isApproved">
+                                    <option value="true">Approve</option>
+                                    <option value="false">Reject</option>
+                                </select>
+                                <div style="margin-top:4px"><input type="submit" class="alert-danger" /></div>
+                            </div>
+                        }
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+@*}*@
+
+
+<div style="margin-top:2rem">
+    @Html.ActionLink("Back", "Index", "", new { @class = "ActionLinks" })
+</div>

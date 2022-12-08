@@ -1,0 +1,160 @@
+﻿@model WebApplication1.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<style>
+    body {
+        background-image: url('/Scripts/Images/Admin.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+@*<script>
+    function contactValidator() {
+        var contact = document.getElementById("ContactField");
+        var checker = '0123456789';
+        
+        if (String(contact).length != 10) {
+            alert('Please provide valid phone number(10 digits)')
+        } else {
+            var s = String(contact)
+            for (var number in s) {
+                if (!checker.includes(number)) {
+                    alert('Please provide valid phone number(10 digits)/Only Digits')
+                }
+            }
+        }
+    }
+</script>*@
+
+
+
+
+    <h2 style="color:white">Register Here</h2>
+
+    @using (Html.BeginForm("Register", "Admin"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.full_name, "Full Name", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Full Name" } })
+                    @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.email, "Email", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-mail",@type="email" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+                <span style="color:brown">@TempData["InvalidEMail"]</span>
+
+            </div>
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.userName, "User name", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User Name" } })
+                    @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                </div>
+                <span style="color:brown">@TempData["InvalidUserName"]</span>
+            </div>
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.password_, "Password", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password_, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                    @Html.ValidationMessageFor(model => model.password_, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group labelColorWhite">
+                @Html.LabelFor(model => model.confirmPassword_, "Re-Enter Password", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.confirmPassword_, new { htmlAttributes = new { @class = "form-control", @placeholder = "Re-Enter Password" } })
+                    <p style="margin-top:1rem">
+                        @Html.ValidationMessageFor(model => model.confirmPassword_, "", new { @class = "text-danger bg-success text-dark" })
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.age, "Age", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control", @placeholder = "Age",@min=16,@max=100 } })
+                    @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.contact_number, "Contact Number", htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.contact_number, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact Number(0123456789)"@*, @id = "ContactField"*@ } })
+                    @Html.ValidationMessageFor(model => model.contact_number, "", new { @class = "text-danger" })
+                </div>
+                <span style="color:brown">@TempData["InvalidContact"]</span>
+                <span style="color:brown">@TempData["contactValidator"]</span>
+            </div>
+
+            <div class="form-group labelColorWhite">
+                @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+
+                    <select name="gender" required>
+                        <option value=null>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                @ViewBag.gender
+            </div>
+
+
+            <div class="form-group labelColorWhite">
+                @Html.LabelFor(model => model.role_id, "Role", htmlAttributes: new { @class = "control-label col-md-2", style = "color:black" })
+                <div class="col-md-10">
+
+                    <select name="role_id" required>
+                        <option>Select Role</option>
+                        <option value="1">1(Admin)</option>
+                        <option value="2">2(Doctor)</option>
+                        <option value="3">3(Receptionist)</option>
+                        <option value="4">4(Patient)</option>
+                    </select>
+                </div>
+                <span style="color:brown"> @ViewBag.roleId</span>
+               
+            </div>
+
+            <div class="form-group labelColorBlack">
+                @Html.LabelFor(model => model.specialization, htmlAttributes: new { @class = "control-label col-md-2", style="color:black" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.specialization, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specialization" } })
+                    @Html.ValidationMessageFor(model => model.specialization, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-danger"/>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back", "Index", "", new { @class = "ActionLinks" })
+    </div>
+

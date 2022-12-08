@@ -1,0 +1,136 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #777;
+    border-color: #fff
+}
+
+.labelColorBlack {
+    color: white;
+    font-weight: 600;
+}
+
+.labelColorWhite {
+    color: black;
+    font-weight:600;
+}
+
+.WhiteHeader{
+    /*background-color:darkkhaki;*/
+    background-color:rgba(0,0,0);
+    color:white;
+}
+
+.ActionLinks {
+/*    font-size: 1em;
+    color: Black;
+    background-color: white;
+    border-radius: 1em;
+    Padding: 4px*/
+
+background-color:crimson;
+padding-left:2rem;
+padding-right:2rem;
+padding-top:1rem;
+padding-bottom:1rem;
+border-radius:6px;
+color:white
+}
+
+
+.ActionLinksBlue {
+
+    background-color: dodgerblue;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 6px;
+    color: white
+}
+
+.Logout {
+    float:right;
+    color: white
+}
+
+.TableBody {
+    /*background-image: linear-gradient(45deg,rgba(255,192,203,0.5) ,grey);*/
+
+    background-color:rgba(255,255,255,0.75);
+    color:ActiveCaption
+}
+
+
+.FrontDiv {
+    /*background-image: linear-gradient(45deg,rgb(204, 200, 27),rgba(157, 83, 83,0.3) 65%);*/
+    background-color:rgba(0,0,0,0.7);
+    background-size:cover;
+    padding:2rem;
+    margin-top:2rem;
+}
+
+
+.jumbotron-form {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    min-height: 60%;
+    border-radius: 5px;
+}
+
+.welcometext {
+    font-weight: bold;
+    font-size: large;
+    font-display: block;
+   /* background-color:lightblue;*/
+/*    width:20%;*/
+    color:aliceblue;
+}
+
+.welcome-name-text {
+    background-color: teal;
+    color: white;
+    padding: 0 0.5rem
+}
+
+.Login-Container {
+    background-color: white;
+    max-width: 300px;
+    padding: 2rem;
+    border-radius: 15px
+}
+
+.receptionist-Index {
+    width: 40%;
+    margin-top: 2rem;
+    height: 8rem;
+}

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HMS_Project_newModelStoreContainer" CdmEntityContainer="HMS_Project_newEntities2">
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="admitdate" ColumnName="admitdate" />
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="treatment_id" ColumnName="treatment_id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="appointmentDate" ColumnName="appointmentDate" />
+          <ScalarProperty Name="appointmentTime" ColumnName="appointmentTime" />
+          <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Billings">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Billing">
+        <MappingFragment StoreEntitySet="Billing">
+          <ScalarProperty Name="is_paid" ColumnName="is_paid" />
+          <ScalarProperty Name="bill_number" ColumnName="bill_number" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="consumable_id" ColumnName="consumable_id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consumables">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Consumable">
+        <MappingFragment StoreEntitySet="Consumable">
+          <ScalarProperty Name="consumable_id" ColumnName="consumable_id" />
+          <ScalarProperty Name="consumable_name" ColumnName="consumable_name" />
+          <ScalarProperty Name="availability_detail" ColumnName="availability_detail" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Desease_Details">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Desease_Details">
+        <MappingFragment StoreEntitySet="Desease_Details">
+          <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="no_of_visits" ColumnName="no_of_visits" />
+          <ScalarProperty Name="desease_catagory" ColumnName="desease_catagory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="prev_history" ColumnName="prev_history" />
+          <ScalarProperty Name="reports" ColumnName="reports" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treatments">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Treatment">
+        <MappingFragment StoreEntitySet="Treatment">
+          <ScalarProperty Name="is_admitted" ColumnName="is_admitted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="treatment_id" ColumnName="treatment_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="consumable_id" ColumnName="consumable_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password_" ColumnName="password_" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="specialization" ColumnName="specialization" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="HMS_Project_newModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="isRequested" ColumnName="isRequested" />
+          <ScalarProperty Name="total_bill" ColumnName="total_bill" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HMS_Project_newModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HMS_Project_newModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HMS_Project_newModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_GetAllAppointments" FunctionName="HMS_Project_newModel.Store.sp_GetAllAppointments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMS_Project_newModel.sp_GetAllAppointments_Result">
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+          <ScalarProperty Name="AdmitDate" ColumnName="AdmitDate" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="treatment_id" ColumnName="treatment_id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="appointmentDate" ColumnName="appointmentDate" />
+          <ScalarProperty Name="appointmentTime" ColumnName="appointmentTime" />
+          <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HMS_Project_newModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMS_Project_newModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HMS_Project_newModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMS_Project_newModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HMS_Project_newModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HMS_Project_newModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
